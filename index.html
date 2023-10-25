@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Food Blog</title>
+        <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./screenStyle.css">
+        <link rel="stylesheet" href="./public/css/printStyle.css"  media="print">
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="header_menu">
+                    <svg class="svg_icon" width="70" height="50">
+                        <rect x="5" y="35" width="50" height="5" rx="2.5" ry="2.5" fill="#FFA500"></rect>
+
+                        <rect x="5" y="25" width="50" height="5" rx="2.5" ry="2.5" fill="#8B4513"></rect>
+
+                        <circle cx="7.5" cy="28" r="2.5" fill="#FF6347"></circle>
+                        <circle cx="15" cy="28" r="2.5" fill="#FF6347"></circle>
+                        <circle cx="22.5" cy="28" r="2.5" fill="#FF6347"></circle>
+
+                        <rect x="7.5" y="30" width="45" height="1" fill="#228B22"></rect>
+
+                        <rect x="7.5" y="25" width="5" height="5" fill="#FFD700"></rect>
+                        <rect x="17.5" y="25" width="5 " height="5" fill="#FFD700"></rect>
+                        <rect x="27.5" y="25" width="5" height="5" fill="#FFD700"></rect>
+
+                        <rect x="5" y="15" width="50" height="5" rx="2.5" ry="2.5" fill="#FFA500"></rect>
+                    </svg>
+                    <ul class="menu">
+                        <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
+                        <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
+                        <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
+                        <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
+                        <li class="menu_item none"><a href="./article3.html" class="menu_link">Log in</a></li>
+                    </ul>
+                </div>
+                <!-- Menu Burger -->
+                <div class="hamburger-menu">
+                    <input id="menu__toggle" type="checkbox">
+                    <label class="menu__btn" for="menu__toggle">
+                        <span></span>
+                    </label>
+                    <ol class="menu__box">
+                        <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
+                        <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
+                        <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
+                        <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="main_text_wrapper">
+                <h1 class="about_food">Everything You Love About Food</h1>
+                <div class="block">
+                    <span> <img class="beans" src="./fig/img/main_page/beans_light.png" alt="beans"> </span>
+                </div>
+                <h3 class="subheader_text">We makes every day full of energy and taste</h3>
+                <h4 class="subheader_question">Want to try our food?</h4>
+                <div class="btn_wrap">
+                    <a href="./article2.html"><div class="more">More</div></a>
+                </div>
+            </div>
+        </header>
+        <!-- About Us Section -->
+        <div class="about_us">
+            <div class="container">
+                <div class="row"></div>
+                <div class="about_us_topic">About Us</div>
+                <div class="block_dark">
+                    <span><img class="beans_dark" src="./fig/img/main_page/beans_dark.png" alt="beans dark"></span>
+                </div>
+                <p class="about_us_text">
+                    Welcome to my food blog! Here, you'll find reviews from real people, top dishes from around the world, restaurant ratings, and much more. Let's uncover the culinary secrets and dive into the exciting world of gastronomy together.<br>
+                    <br>
+                    Explore a world of flavors and culinary delights on my food blog. Discover mouthwatering reviews, rankings of dishes from every corner of the globe, and the best dining spots. Join me in unraveling the mysteries of the culinary universe and embark on a delicious journey like no other!
+
+                </p>
+            </div>
+            <footer>
+                <div class="container">
+                    <div class="my_contacts_footer">
+                        <a target="_blank" href="https://www.linkedin.com/in/nikitakavtsevich/"><img src="./fig/img/for_your_pleasure/linkedIn.jfif" class="footer_contacts" alt="linkedIn"></a>
+                    </div>
+                    <div class="contacts_info">
+                        <span class="all_rights_text"><a href="mailto:mikita.kautsevich@student.tuke.sk">Mikita Kautsevich</a></span>
+                        <span class="all_rights_text"> ⓒ All rights reserved 2023</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
