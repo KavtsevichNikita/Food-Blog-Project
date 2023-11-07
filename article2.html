@@ -14,24 +14,134 @@
     <body>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
+                const formDataArray = JSON.parse(localStorage.getItem("formDataArray"));
+                const formDataContainer = document.getElementById("form-data");
+    
+                function renderReview(formData) {
+                    return `
+                        <div class="cart_of_review" data-category="${formData.foodRatingValue}" data-name="${formData.name}">
+                            <p class="name">${formData.name}</p>
+                            <img class="person_img" src="${formData.url}" alt="Person">
+                            <div class="final_review">${formData.message}</div>
+                            <p class="name">${formData.foodRatingValue}</p>
+                        `;
+                }
+    
+                function filterReviews(category) {
+                    const reviewCards = document.querySelectorAll(".cart_of_review");
+                    reviewCards.forEach(card => {
+                        const cardCategory = card.getAttribute("data-category");
+                        card.style.display = category === "All" || category === cardCategory ? "block" : "none";
+                    });
+                }
+    
+                function searchReviews(searchTerm) {
+                    const reviewCards = document.querySelectorAll(".cart_of_review");
+                    let found = false;
+    
+                    reviewCards.forEach(card => {
+                        const cardName = card.getAttribute("data-name").toLowerCase();
+                        card.style.display = cardName.includes(searchTerm) ? "block" : "none";
+                        if (card.style.display === "block") found = true;
+                    });
+    
+                    if (!found) {
+                        formDataContainer.innerHTML = "<p>No data found.</p>";
+                    } else {
+                        formDataContainer.innerHTML = "";
+                        formDataArray.forEach(formData => {
+                            formDataContainer.innerHTML += renderReview(formData);
+                        });
+                    }
+                }
+    
+                if (formDataArray) {
+                    formDataArray.forEach(formData => {
+                        formDataContainer.innerHTML += renderReview(formData);
+                    });
+                }
+    
+                const filterButtons = document.querySelectorAll(".button_filter_reviews");
+                filterButtons.forEach(button => {
+                    button.addEventListener("click", () => {
+                        const category = button.getAttribute("data-filter");
+                        filterReviews(category);
+                    });
+                });
+    
+                const searchBar = document.getElementById("searchBar");
+                searchBar.addEventListener("input", () => {
+                    const searchTerm = searchBar.value.toLowerCase();
+                    searchReviews(searchTerm);
+                });
+            });
+        </script>
+        <!-- <script>
+            document.addEventListener("DOMContentLoaded", function () {
         const formDataArray = JSON.parse(localStorage.getItem("formDataArray"));
+        const formDataContainer = document.getElementById("form-data");
     
         if (formDataArray) {
-            const formDataContainer = document.getElementById("form-data");
     
             formDataArray.forEach(function (formData, index) {
                 formDataContainer.innerHTML += `
-                    <div class="cart_of_review" data-category="${formData.keywords}">
-                        <img class="person_img" src="${formData.url}" alt="Person">
+                    <div class="cart_of_review" data-category=${formData.foodRatingValue} data-name=${formData.name}>
                         <p class="name">${formData.name}</p>
-                        <div class="country">${formData.pastries ? "Yes" : "No"}</div>
-                        <div class="final_review">${formData.keywords}</div>
+                        <img class="person_img" src="${formData.url}" alt="Person">
+                        <div class="final_review">${formData.message}</div>
+                        <p class="name">${formData.foodRatingValue}</p>
                     </div>
                 `;
             });
         }
+
+        const filterButtons = document.querySelectorAll(".button_filter_reviews");
+        filterButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const category = this.getAttribute("data-filter");
+                filterReviews(category);
+        });
+
+        function filterReviews(category) {
+        const reviewCards = document.querySelectorAll(".cart_of_review");
+        reviewCards.forEach(function (card) {
+            const cardCategory = card.getAttribute("data-category");
+            console.log(cardCategory)
+            if (category === "All" || category === cardCategory) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+        }
+
+        const searchBar = document.getElementById("searchBar");
+        searchBar.addEventListener("input", function () {
+            const searchTerm = searchBar.value.toLowerCase();
+            searchReviews(searchTerm);
+        });
+
+        function searchReviews(searchTerm) {
+            const reviewCards = document.querySelectorAll(".cart_of_review");
+            let found = false;
+            reviewCards.forEach(function (card) {
+                const cardName = card.getAttribute("data-name").toLowerCase();
+                if (cardName.includes(searchTerm)) {
+                    card.style.display = "block";
+                    found = true
+                } else {
+                    card.style.display = "none";
+                    found = false
+                }
+
+                if (!found) {
+                formDataContainer.innerHTML = "<p>No data found.</p>";
+            }
+            });
+        }
+        });
     });
-        </script>
+        </script> -->
         <header class="our_reviews">
             <div class="container">
                 <div class="header_menu">
@@ -85,24 +195,6 @@
         <!-- Cards  -->
         <div class="container">
             <div class="cart_of_reviews_all" id="form-data">
-                <div class="cart_of_review" data-category="Good">
-                    <img class="person_img" src="./fig/img/reviews_page/person.jpg" alt="Person">
-                    <p class="name">Name</p>
-                    <div class="country">Japan</div>
-                    <div class="final_review">Good</div>
-                </div>
-                <!-- <div class="cart_of_review" data-category="Medium">
-                    <img class="person_img" src="./fig/img/reviews_page/person.jpg" alt="Person">
-                    <p class="name">Name</p>
-                    <div class="country">Slovakia</div>
-                    <div class="final_review">Medium</div>
-                </div>
-                <div class="cart_of_review" data-category="Bad">
-                    <img class="person_img" src="./fig/img/reviews_page/person.jpg" alt="Person">
-                    <p class="name">Name</p>
-                    <div class="country">Japan</div>
-                    <div class="final_review">Bad</div>
-                </div> -->
             </div>
 
         </div>

@@ -15,6 +15,8 @@
     <body>
         <script src="./script.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://accounts.google.com/gsi/client" async></script>   
+        </div>
         <script>
             function onSignIn(googleUser) {
                 var profile = googleUser.getBasicProfile();
@@ -112,7 +114,7 @@
                         <div class="col span-1-of-3">
                             <label for="keywords">Keywords</label>
                         </div>
-                        <div class="col span-1-of-3">
+                        <div class="col span-2-of-3">
                             <input list="keyword-list" type="text" name="keywords" id="keywords" placeholder="Enter keywords">
                             <datalist id="keyword-list">
                                 <option value="Food">
@@ -123,11 +125,29 @@
                             </datalist>
                         </div>
                     </div>
-                    
-                    <!-- Radio buttons -->
+
+                    <!--  -->
+
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <p class="message">Rate this food!</p>
+                            <fieldset>
+                                <input type="radio" name="foodRating" id="thebest" value="The best">
+                                <label for="thebest">The Best</label>
         
-                    <!-- CheckBox -->
-                    <p class="message">Do you like pastries?</p>
+                                <input type="radio" name="foodRating" id="good" value="Good">
+                                <label for="good">Good</label>
+                            
+                                <input type="radio" name="foodRating" id="medium" value="Medium">
+                                <label for="medium">Medium</label>
+            
+                                <input type="radio" name="foodRating" id="bad" value="Bad">
+                                <label for="bad">Bad</label>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <p class="message">Recommend this product?</p>
                     <div class="col">
                         <div class="span-1-of-3">
                             <input type="checkbox" name="pastries" id="pastries-checkbox">
