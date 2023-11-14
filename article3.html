@@ -104,10 +104,10 @@
                     </div>
                     <div class="row">
                         <div class="col span-1-of-3">
-                            <label for="url">Image</label>
+                            <label for="url">Image *</label>
                         </div>
                         <div class="col span-1-of-3">
-                            <input type="url" name="url" id="url" placeholder="Your image source">
+                            <input type="url" name="url" id="url" placeholder="Your image source" required>
                         </div>
                     </div>
                     <div class="row">
@@ -115,19 +115,16 @@
                             <label for="keywords">Keywords</label>
                         </div>
                         <div class="col span-2-of-3">
-                            <input list="keyword-list" type="text" name="keywords" id="keywords" placeholder="Enter keywords">
                             <datalist id="keyword-list">
                                 <option value="Food">
                                 <option value="Slovakian Food">
-                                <option value="China">
-                                <option value="Exotic">
-                                <option value="Good">
+                                <option value="China Food">
+                                <option value="Exotic Food">
+                                <option value="Paradise of food">
                             </datalist>
+                            <input list="keyword-list" type="text" name="keywords" id="keywords" placeholder="Enter keywords">
                         </div>
                     </div>
-
-                    <!--  -->
-
                     <div class="row">
                         <div class="col span-1-of-3">
                             <p class="message">Rate this food!</p>
@@ -159,8 +156,8 @@
                     <textarea name="message" placeholder="Tell us" required></textarea>
                     
                     <div class="form_actions">
-                        <button class="send_us" id="send">Send us</button>
-                        <button class="send_us" id="reset">Reset</button>
+                        <button class="send_us" type="submit" id="send">Send us</button>
+                        <button class="send_us" type="reset" id="reset">Reset</button>
                     </div>
                 </form>
             </div>

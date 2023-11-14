@@ -631,8 +631,8 @@ th {
     color: #000000;
 }
 .cart_of_review {
-    width: 220px;
-    height: 260px;
+    width: 250px;
+    height: 320px;
     box-shadow: 30px 5px 15px #ead0af;
     border-radius: 8px;
     color: #FAEBD7;
@@ -640,7 +640,7 @@ th {
     cursor: pointer;
 }
 .person_img {
-    max-width: 400px;
+    max-width: 220px;
     max-height: 120px;
     display: block;
     margin: 20px auto;
@@ -768,14 +768,27 @@ label{
     margin-right: 25px;
     text-align: end;
 }
-.final_review{
+.final_review {
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 20px;
     color: #000000;
     margin-top: 18px;
     text-align: center;
+    max-height: 30px;
+    max-width: 210px;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+hr {
+    width: 50%;
+    display: block;
+    margin: 10px auto;
 }
 
 .form_actions {

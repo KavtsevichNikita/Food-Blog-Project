@@ -1,216 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Customer Reviews</title>
-        <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="./screenStyle.css">
-        <link rel="stylesheet" href="./public/css/printStyle.css"  media="print">
-        <meta name="google-signin-client_id" content="93995621412-0s9jrqbqqt91ek4cefp2pvd8ie2q1253.apps.googleusercontent.com">
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-    </head>
-    <body>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const formDataArray = JSON.parse(localStorage.getItem("formDataArray"));
-                const formDataContainer = document.getElementById("form-data");
-    
-                function renderReview(formData) {
-                    return `
-                        <div class="cart_of_review" data-category="${formData.foodRatingValue}" data-name="${formData.name}">
-                            <p class="name">${formData.name}</p>
-                            <img class="person_img" src="${formData.url}" alt="Person">
-                            <div class="final_review">${formData.message}</div>
-                            <p class="name">${formData.foodRatingValue}</p>
-                        `;
-                }
-    
-                function filterReviews(category) {
-                    const reviewCards = document.querySelectorAll(".cart_of_review");
-                    reviewCards.forEach(card => {
-                        const cardCategory = card.getAttribute("data-category");
-                        card.style.display = category === "All" || category === cardCategory ? "block" : "none";
-                    });
-                }
-    
-                function searchReviews(searchTerm) {
-                    const reviewCards = document.querySelectorAll(".cart_of_review");
-                    let found = false;
-    
-                    reviewCards.forEach(card => {
-                        const cardName = card.getAttribute("data-name").toLowerCase();
-                        card.style.display = cardName.includes(searchTerm) ? "block" : "none";
-                        if (card.style.display === "block") found = true;
-                    });
-    
-                    if (!found) {
-                        formDataContainer.innerHTML = "<p>No data found.</p>";
-                    } else {
-                        formDataContainer.innerHTML = "";
-                        formDataArray.forEach(formData => {
-                            formDataContainer.innerHTML += renderReview(formData);
-                        });
-                    }
-                }
-    
-                if (formDataArray) {
-                    formDataArray.forEach(formData => {
-                        formDataContainer.innerHTML += renderReview(formData);
-                    });
-                }
-    
-                const filterButtons = document.querySelectorAll(".button_filter_reviews");
-                filterButtons.forEach(button => {
-                    button.addEventListener("click", () => {
-                        const category = button.getAttribute("data-filter");
-                        filterReviews(category);
-                    });
-                });
-    
-                const searchBar = document.getElementById("searchBar");
-                searchBar.addEventListener("input", () => {
-                    const searchTerm = searchBar.value.toLowerCase();
-                    searchReviews(searchTerm);
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./screenStyle.css">
+    <link rel="stylesheet" href="./public/css/printStyle.css" media="print">
+    <meta name="google-signin-client_id"
+        content="93995621412-0s9jrqbqqt91ek4cefp2pvd8ie2q1253.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const formDataArray = JSON.parse(localStorage.getItem("formDataArray"));
+
+            // Using OpinionsHandler
+            const opinionsHandler = new OpinionsHandler(formDataArray, "form-data");
+
+            if (formDataArray) {
+                opinionsHandler.renderOpinions();
+            }
+
+            const filterButtons = document.querySelectorAll(".button_filter_reviews");
+            filterButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const category = button.getAttribute("data-filter");
+                    opinionsHandler.filterReviews(category);
                 });
             });
-        </script>
-        <!-- <script>
-            document.addEventListener("DOMContentLoaded", function () {
-        const formDataArray = JSON.parse(localStorage.getItem("formDataArray"));
-        const formDataContainer = document.getElementById("form-data");
-    
-        if (formDataArray) {
-    
-            formDataArray.forEach(function (formData, index) {
-                formDataContainer.innerHTML += `
-                    <div class="cart_of_review" data-category=${formData.foodRatingValue} data-name=${formData.name}>
-                        <p class="name">${formData.name}</p>
-                        <img class="person_img" src="${formData.url}" alt="Person">
-                        <div class="final_review">${formData.message}</div>
-                        <p class="name">${formData.foodRatingValue}</p>
-                    </div>
-                `;
+
+            const searchBar = document.getElementById("searchBar");
+            searchBar.addEventListener("input", () => {
+                const searchTerm = searchBar.value.toLowerCase();
+                opinionsHandler.searchReviews(searchTerm);
             });
-        }
 
-        const filterButtons = document.querySelectorAll(".button_filter_reviews");
-        filterButtons.forEach(function (button) {
-            button.addEventListener("click", function () {
-                const category = this.getAttribute("data-filter");
-                filterReviews(category);
+            //// Mustache
+
+            // const opinionsHandlerMustache = new OpinionsHandlerMustache(formDataArray, "form-data");
+            // opinionsHandlerMustache.renderOpinions();
         });
-
-        function filterReviews(category) {
-        const reviewCards = document.querySelectorAll(".cart_of_review");
-        reviewCards.forEach(function (card) {
-            const cardCategory = card.getAttribute("data-category");
-            console.log(cardCategory)
-            if (category === "All" || category === cardCategory) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        });
-        }
-
-        const searchBar = document.getElementById("searchBar");
-        searchBar.addEventListener("input", function () {
-            const searchTerm = searchBar.value.toLowerCase();
-            searchReviews(searchTerm);
-        });
-
-        function searchReviews(searchTerm) {
-            const reviewCards = document.querySelectorAll(".cart_of_review");
-            let found = false;
-            reviewCards.forEach(function (card) {
-                const cardName = card.getAttribute("data-name").toLowerCase();
-                if (cardName.includes(searchTerm)) {
-                    card.style.display = "block";
-                    found = true
-                } else {
-                    card.style.display = "none";
-                    found = false
-                }
-
-                if (!found) {
-                formDataContainer.innerHTML = "<p>No data found.</p>";
-            }
-            });
-        }
-        });
-    });
-        </script> -->
-        <header class="our_reviews">
-            <div class="container">
-                <div class="header_menu">
-                    <img src="./fig/img/main_page/coffee_beans.png" alt="Beans" class="beans_light">
-                    <ul class="menu">
-                        <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
-                        <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
-                        <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
-                        <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
-                        <li class="menu_item none"><a href="./article3.html" class="menu_link">Log in</a></li>
-                    </ul>
-                </div>
-                <!-- Menu Burger -->
-                <div class="hamburger-menu">
-                    <input id="menu__toggle" type="checkbox">
-                    <label class="menu__btn" for="menu__toggle">
-                        <span></span>
-                    </label>
-                    <ul class="menu__box">
-                        <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
-                        <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
-                        <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
-                        <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="subheader">
-                <h1 class="customer_reviews_topic">Customer Reviews</h1>
-            </div>
-        </header>
-        <div class="Searching">
-            <div class="container">
-                <div class="search_content">
-                    <p class="looking_for">Looking for</p>
-                    <div id="searchWrapper">
-                        <form>
-                            <p class="search_form"><input type="search" name="q" placeholder="start typing here..." id="searchBar"></p>
-                        </form>
-                    </div>
-                    <div class="text">Filter</div>
-                    <div class="filter_buttons">
-                        <button class="button_filter_reviews" data-filter="All">All</button>
-                        <button class="button_filter_reviews" data-filter="The best">The best</button>
-                        <button class="button_filter_reviews" data-filter="Good">Good</button>
-                        <button class="button_filter_reviews" data-filter="Medium">Medium</button>
-                        <button class="button_filter_reviews" data-filter="Bad">Bad</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Cards  -->
+    </script>
+    <header class="our_reviews">
         <div class="container">
-            <div class="cart_of_reviews_all" id="form-data">
+            <div class="header_menu">
+                <img src="./fig/img/main_page/coffee_beans.png" alt="Beans" class="beans_light">
+                <ul class="menu">
+                    <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
+                    <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
+                    <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
+                    <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
+                    <li class="menu_item none"><a href="./article3.html" class="menu_link">Log in</a></li>
+                </ul>
             </div>
-
-        </div>
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <ul class="menu_footer">
+            <!-- Menu Burger -->
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox">
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>
+                <ul class="menu__box">
                     <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
                     <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
                     <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
                     <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
                 </ul>
-                <div class="footer_beans">
-                    <span> <img src="./fig/img/main_page/beans_dark.png" alt="Beans Dark" class="beans_dark"></span>
+            </div>
+        </div>
+        <div class="subheader">
+            <h1 class="customer_reviews_topic">Customer Reviews</h1>
+        </div>
+    </header>
+    <div class="Searching">
+        <div class="container">
+            <div class="search_content">
+                <p class="looking_for">Looking for</p>
+                <div id="searchWrapper">
+                    <form>
+                        <p class="search_form"><input type="search" name="q" placeholder="start typing here..."
+                                id="searchBar"></p>
+                    </form>
+                </div>
+                <div class="text">Filter</div>
+                <div class="filter_buttons">
+                    <button class="button_filter_reviews" data-filter="All">All</button>
+                    <button class="button_filter_reviews" data-filter="The best">The best</button>
+                    <button class="button_filter_reviews" data-filter="Good">Good</button>
+                    <button class="button_filter_reviews" data-filter="Medium">Medium</button>
+                    <button class="button_filter_reviews" data-filter="Bad">Bad</button>
                 </div>
             </div>
-        </footer>
-    </body>
+        </div>
+    </div>
+    <!-- Cards  -->
+    <div class="container">
+        <div class="cart_of_reviews_all" id="form-data">
+        </div>
+
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <ul class="menu_footer">
+                <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
+                <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
+                <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
+                <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
+            </ul>
+            <div class="footer_beans">
+                <span> <img src="./fig/img/main_page/beans_dark.png" alt="Beans Dark" class="beans_dark"></span>
+            </div>
+        </div>
+    </footer>
+    <script src="./OpinionsHandler.js"></script>
+    <script src="./OpinionsHandlerMustache.js"></script>
+    <script src="./mustahe.js"></script>
+</body>
+
 </html>
