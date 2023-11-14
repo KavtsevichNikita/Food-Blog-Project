@@ -35,11 +35,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (name === "" || email === "" || url === "" || message === "" || !foodRatingValue) {
             alert("All required fields must be filled out!");
+        } else if (!isValidEmail(email)) {
+            alert("Please enter a valid email address!");
+        } else if (!isValidURL(url)) {
+            alert("Please enter a valid URL!");
         } else {
             formDataArray.push(formData);
             localStorage.setItem("formDataArray", JSON.stringify(formDataArray));
-
+        
             window.location.href = "./article2.html";
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        function isValidURL(url) {
+            const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+            return urlRegex.test(url);
         }
     });
 });
