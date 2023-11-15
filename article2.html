@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="./public/css/printStyle.css" media="print">
 </head>
 <body>
+
+    <!-- Using OpinionsHandler -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const formDataArray = JSON.parse(localStorage.getItem("formDataArray"));
-
-            // Using OpinionsHandler
             const opinionsHandler = new OpinionsHandler(formDataArray, "form-data");
 
             if (formDataArray) {
@@ -34,31 +34,6 @@
                 const searchTerm = searchBar.value.toLowerCase();
                 opinionsHandler.searchReviews(searchTerm);
             });
-
-            //// Mustache
-
-            // const opinionsHandlerMustache = new OpinionsHandlerMustache(formDataArray, "form-data");
-
-            // if (formDataArray) {
-            //     opinionsHandlerMustache.renderOpinions();   
-            // }
-
-            // console.log(formDataArray)
-            // console.log(opinionsHandlerMustache)
-
-            // const filterButtons = document.querySelectorAll(".button_filter_reviews");
-            // filterButtons.forEach(button => {
-            //     button.addEventListener("click", () => {
-            //         const category = button.getAttribute("data-filter");
-            //         opinionsHandlerMustache.filterReviews(category);
-            //     });
-            // });
-
-            // const searchBar = document.getElementById("searchBar");
-            // searchBar.addEventListener("input", () => {
-            //     const searchTerm = searchBar.value.toLowerCase();
-            //     opinionsHandlerMustache.searchReviews(searchTerm);
-            // });
         });
     </script>
     <header class="our_reviews">
@@ -115,26 +90,7 @@
     <!-- Cards  -->
     <div class="container">
         <div class="cart_of_reviews_all" id="form-data">
-            <script id="mustacheOpinion" type="text/template">
-                <div class="cart_of_reviews_all" id="form-data">
-                    <div id="artOpinions" class="cart_of_review" data-category="{{foodRatingValue}}" data-name="{{name}}">
-                        <p class="name">{{name}}</p>
-                        <img class="person_img" src="{{url}}" alt="Person">
-                        <div class="final_review">{{message}}</div>
-                        <p class="name">{{foodRatingValue}}</p>
-                        <hr>
-                        <p class="name">Posted: {{created}}</p>
-                    </div>
-                    {{/.}}
-                    {{^.}}
-                    <section>
-                        Sorry, no opinions found.
-                    </section>
-                    {{/.}}
-                </div>
-            </script>   
         </div>
-
     </div>
     <!-- Footer -->
     <footer>

@@ -640,8 +640,8 @@ th {
     cursor: pointer;
 }
 .person_img {
-    max-width: 220px;
-    max-height: 120px;
+    width: 210px;
+    height: 120px;
     display: block;
     margin: 20px auto;
     border-radius: 10px;
