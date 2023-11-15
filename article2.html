@@ -8,11 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./screenStyle.css">
     <link rel="stylesheet" href="./public/css/printStyle.css" media="print">
-    <meta name="google-signin-client_id"
-        content="93995621412-0s9jrqbqqt91ek4cefp2pvd8ie2q1253.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
-
 <body>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -42,7 +38,27 @@
             //// Mustache
 
             // const opinionsHandlerMustache = new OpinionsHandlerMustache(formDataArray, "form-data");
-            // opinionsHandlerMustache.renderOpinions();
+
+            // if (formDataArray) {
+            //     opinionsHandlerMustache.renderOpinions();   
+            // }
+
+            // console.log(formDataArray)
+            // console.log(opinionsHandlerMustache)
+
+            // const filterButtons = document.querySelectorAll(".button_filter_reviews");
+            // filterButtons.forEach(button => {
+            //     button.addEventListener("click", () => {
+            //         const category = button.getAttribute("data-filter");
+            //         opinionsHandlerMustache.filterReviews(category);
+            //     });
+            // });
+
+            // const searchBar = document.getElementById("searchBar");
+            // searchBar.addEventListener("input", () => {
+            //     const searchTerm = searchBar.value.toLowerCase();
+            //     opinionsHandlerMustache.searchReviews(searchTerm);
+            // });
         });
     </script>
     <header class="our_reviews">
@@ -54,7 +70,7 @@
                     <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
                     <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
                     <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
-                    <li class="menu_item none"><a href="./article3.html" class="menu_link">Log in</a></li>
+                    <li class="menu_item"><a href="" class="menu_link">Log in</a></a></li>
                 </ul>
             </div>
             <!-- Menu Burger -->
@@ -99,6 +115,24 @@
     <!-- Cards  -->
     <div class="container">
         <div class="cart_of_reviews_all" id="form-data">
+            <script id="mustacheOpinion" type="text/template">
+                <div class="cart_of_reviews_all" id="form-data">
+                    <div id="artOpinions" class="cart_of_review" data-category="{{foodRatingValue}}" data-name="{{name}}">
+                        <p class="name">{{name}}</p>
+                        <img class="person_img" src="{{url}}" alt="Person">
+                        <div class="final_review">{{message}}</div>
+                        <p class="name">{{foodRatingValue}}</p>
+                        <hr>
+                        <p class="name">Posted: {{created}}</p>
+                    </div>
+                    {{/.}}
+                    {{^.}}
+                    <section>
+                        Sorry, no opinions found.
+                    </section>
+                    {{/.}}
+                </div>
+            </script>   
         </div>
 
     </div>
@@ -117,8 +151,5 @@
         </div>
     </footer>
     <script src="./OpinionsHandler.js"></script>
-    <script src="./OpinionsHandlerMustache.js"></script>
-    <script src="./mustahe.js"></script>
 </body>
-
 </html>

@@ -1,5 +1,3 @@
-// opinions-handler.js
-
 class OpinionsHandler {
   constructor(formDataArray, containerId) {
     this.formDataArray = formDataArray || [];
@@ -52,27 +50,3 @@ class OpinionsHandler {
     }
   }
 }
-
-// // Example usage
-// document.addEventListener("DOMContentLoaded", function () {
-//   const formDataArray = JSON.parse(localStorage.getItem("formDataArray"));
-//   const opinionsHandler = new OpinionsHandler(formDataArray, "form-data");
-
-//   if (formDataArray) {
-//     opinionsHandler.renderOpinions();
-//   }
-
-//   const filterButtons = document.querySelectorAll(".button_filter_reviews");
-//   filterButtons.forEach((button) => {
-//     button.addEventListener("click", () => {
-//       const category = button.getAttribute("data-filter");
-//       opinionsHandler.filterReviews(category);
-//     });
-//   });
-
-//   const searchBar = document.getElementById("searchBar");
-//   searchBar.addEventListener("input", () => {
-//     const searchTerm = searchBar.value.toLowerCase();
-//     opinionsHandler.searchReviews(searchTerm);
-//   });
-// });

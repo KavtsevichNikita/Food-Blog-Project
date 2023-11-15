@@ -1,181 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="google-signin-client_id" content="93995621412-brgnk873habtiji9920t0bgcdi9u2p9o.apps.googleusercontent.com">
-        <title>Contact us</title>
-        <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="./public/css/bootstrap-reboot.min.css">
-        <link rel="stylesheet" href="./public/css/bootstrap-grid.min.css">
-        <link rel="stylesheet" href="./screenStyle.css">
-        <link rel="stylesheet" href="./public/css/printStyle.css"  media="print">
-    </head>
-    <body>
-        <script src="./script.js"></script>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="https://accounts.google.com/gsi/client" async></script>   
-        </div>
-        <script>
-            function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();
-    
-                console.log('Úplné meno: ' + profile.getName());
-                console.log('Meno: ' + profile.getGivenName());
-                console.log('Priezvisko: ' + profile.getFamilyName());
-                console.log("Obrázok profilu: " + profile.getImageUrl());
-                console.log("Email: " + profile.getEmail());
-    
-                var id_token = googleUser.getAuthResponse().id_token;
-                console.log("ID Token: " + id_token);
-    
-                document.querySelector("#content").innerHTML = "<p>Vitajte " + profile.getGivenName() + "! Kliknite pre <a href='#' onclick='signOut();'>odhlásenie</a>.</p>";
-            }
-            function signOut() {
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function () {
-                alert("Boli ste odhlásený...");
-    
-                location.reload();
-            });
-            }
-        </script>
-        <header class="contact_us">
-            <div>
-                <div class="header_menu">
-                    <img src="./fig/img/main_page/coffee_beans.png" alt="Beans" class="beans_light">
-                    <ul class="menu">
-                        <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
-                        <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
-                        <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
-                        <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
-                        <li class="menu_item"><div class="g-signin2" data-onsuccess="onSignIn"><a href="./article3.html" class="menu_link">Log in</a></div></li>
-                    </ul>
-                </div>
-                <!-- Menu Burger -->
-                <div class="hamburger-menu">
-                    <input id="menu__toggle" type="checkbox">
-                    <label class="menu__btn" for="menu__toggle">
-                        <span></span>
-                    </label>
-                    <ul class="menu__box">
-                        <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
-                        <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
-                        <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
-                        <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
-                        <li class="menu_item"><a href="./article3.html" class="menu_link">Log in</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="subheader">
-                <h1 class="pleasure_topic">Contact us</h1>
-            </div>
-        </header>
 
-        <!-- FORM -->
-        <div class="section-form">
-            <div class="your_taste">
-                <div class="container">
-                    <p class="tell_section">Tell us about your tastes</p>
-                    <div id="content"></div>
-                    <div class="footer_beans">
-                        <span> <img src="./fig/img/main_page/beans_dark.png" alt="Beans Dark" class="beans_dark"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <form method="post" action="#" class="contact-form" id="contact-form">
-                    <div class="row">
-                        <div class="col span-1-of-3">
-                            <label for="name">Name *</label>
-                        </div>
-                        <div class="col span-1-of-3">
-                            <input type="text" name="name" id="name" placeholder="Your name" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col span-1-of-3">
-                            <label for="email">Email *</label>
-                        </div>
-                        <div class="col span-1-of-3">
-                            <input type="email" name="email" id="email" placeholder="Your email" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col span-1-of-3">
-                            <label for="url">Image *</label>
-                        </div>
-                        <div class="col span-1-of-3">
-                            <input type="url" name="url" id="url" placeholder="Your image source" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col span-1-of-3">
-                            <label for="keywords">Keywords</label>
-                        </div>
-                        <div class="col span-2-of-3">
-                            <datalist id="keyword-list">
-                                <option value="Food">
-                                <option value="Slovakian Food">
-                                <option value="China Food">
-                                <option value="Exotic Food">
-                                <option value="Paradise of food">
-                            </datalist>
-                            <input list="keyword-list" type="text" name="keywords" id="keywords" placeholder="Enter keywords">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col span-1-of-3">
-                            <p class="message">Rate this food!</p>
-                            <fieldset>
-                                <input type="radio" name="foodRating" id="thebest" value="The best">
-                                <label for="thebest">The Best</label>
-        
-                                <input type="radio" name="foodRating" id="good" value="Good">
-                                <label for="good">Good</label>
-                            
-                                <input type="radio" name="foodRating" id="medium" value="Medium">
-                                <label for="medium">Medium</label>
-            
-                                <input type="radio" name="foodRating" id="bad" value="Bad">
-                                <label for="bad">Bad</label>
-                            </fieldset>
-                        </div>
-                    </div>
-                    
-                    <p class="message">Recommend this product?</p>
-                    <div class="col">
-                        <div class="span-1-of-3">
-                            <input type="checkbox" name="pastries" id="pastries-checkbox">
-                            <label for="pastries-checkbox">Yes</label>
-                        </div>
-                    </div>
-                    <!-- Message -->
-                    <p class="message">Your message*</p>
-                    <textarea name="message" placeholder="Tell us" required></textarea>
-                    
-                    <div class="form_actions">
-                        <button class="send_us" type="submit" id="send">Send us</button>
-                        <button class="send_us" type="reset" id="reset">Reset</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        
-        <!-- Form -->
-        <footer>
-            <div class="container">
-                <ol class="menu_footer">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id"
+        content="93995621412-aq37b9ejp6049m96q23gpvkubqdco7c2.apps.googleusercontent.com">
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <title>Contact us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./public/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="./public/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./screenStyle.css">
+    <link rel="stylesheet" href="./public/css/printStyle.css" media="print">
+</head>
+
+<body>
+    <script src="./script.js"></script>
+    <header class="contact_us">
+        <div>
+            <div class="header_menu">
+                <img src="./fig/img/main_page/coffee_beans.png" alt="Beans" class="beans_light">
+                <ul class="menu">
                     <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
                     <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
                     <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
                     <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
-                </ol>
+                    <li class="menu_item"><a href="" class="menu_link">Log in</a></a></li>
+                </ul>
+            </div>
+            <!-- Menu Burger -->
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox">
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>
+                <ul class="menu__box">
+                    <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
+                    <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
+                    <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
+                    <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
+                    <li class="menu_item"><a href="./article3.html" class="menu_link">Log in</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="subheader">
+            <h1 class="pleasure_topic">Contact us</h1>
+        </div>
+    </header>
+
+    <div id="info"></div>
+    <!-- FORM -->
+    <div class="section-form">
+        <div class="your_taste">
+            <div class="container">
+                <p class="tell_section">Tell us about your tastes</p>
+                <div id="content"></div>
                 <div class="footer_beans">
                     <span> <img src="./fig/img/main_page/beans_dark.png" alt="Beans Dark" class="beans_dark"></span>
                 </div>
             </div>
-        </footer>
-    </body>
+        </div>
+        <div class="row">
+            <form method="post" action="#" class="contact-form" id="contact-form">
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="name">Name *</label>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <input type="text" name="name" id="name" placeholder="Your name" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="email">Email *</label>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <input type="email" name="email" id="email" placeholder="Your email" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="url">Image *</label>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <input type="url" name="url" id="url" placeholder="Your image source" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="keywords">Keywords</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <datalist id="keyword-list">
+                            <option value="Food">
+                            <option value="Slovakian Food">
+                            <option value="China Food">
+                            <option value="Exotic Food">
+                            <option value="Paradise of food">
+                        </datalist>
+                        <input list="keyword-list" type="text" name="keywords" id="keywords"
+                            placeholder="Enter keywords">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <p class="message">Rate this food!</p>
+                        <fieldset>
+                            <input type="radio" name="foodRating" id="thebest" value="The best">
+                            <label for="thebest">The Best</label>
+
+                            <input type="radio" name="foodRating" id="good" value="Good">
+                            <label for="good">Good</label>
+
+                            <input type="radio" name="foodRating" id="medium" value="Medium">
+                            <label for="medium">Medium</label>
+
+                            <input type="radio" name="foodRating" id="bad" value="Bad">
+                            <label for="bad">Bad</label>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <p class="message">Recommend this product?</p>
+                <div class="col">
+                    <div class="span-1-of-3">
+                        <input type="checkbox" name="pastries" id="pastries-checkbox">
+                        <label for="pastries-checkbox">Yes</label>
+                    </div>
+                </div>
+                <!-- Message -->
+                <p class="message">Your message*</p>
+                <textarea name="message" placeholder="Tell us" required></textarea>
+
+                <div class="form_actions">
+                    <button class="send_us" type="submit" id="send">Send us</button>
+                    <button class="send_us" type="reset" id="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <footer>
+        <div class="container">
+            <ol class="menu_footer">
+                <li class="menu_item"><a href="./index.html" class="menu_link">Food Blog</a></li>
+                <li class="menu_item"><a href="./article1.html" class="menu_link">For your pleasure</a></li>
+                <li class="menu_item"><a href="./article2.html" class="menu_link">Reviews</a></li>
+                <li class="menu_item"><a href="./article3.html" class="menu_link">Contact us</a></li>
+            </ol>
+            <div class="footer_beans">
+                <span> <img src="./fig/img/main_page/beans_dark.png" alt="Beans Dark" class="beans_dark"></span>
+            </div>
+        </div>
+    </footer>
+    <script src="https://apis.google.com/js/platform.js?onload=startGSingIn" async defer></script>
+</body>
+
 </html>
