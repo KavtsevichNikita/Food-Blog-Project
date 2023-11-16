@@ -697,6 +697,10 @@ input:valid{
     border: none;
 }
 
+.required {
+    color:darkred;
+}
+
 input[type=radio] {
     padding: 7px;
     border-radius: 3px;

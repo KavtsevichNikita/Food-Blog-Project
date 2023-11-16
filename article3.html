@@ -66,7 +66,7 @@
             <form method="post" action="#" class="contact-form" id="contact-form">
                 <div class="row">
                     <div class="col span-1-of-3">
-                        <label for="name">Name *</label>
+                        <label class="required" for="name">Name *</label>
                     </div>
                     <div class="col span-1-of-3">
                         <input type="text" name="name" id="name" placeholder="Your name" required>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="row">
                     <div class="col span-1-of-3">
-                        <label for="email">Email *</label>
+                        <label class="required" for="email">Email *</label>
                     </div>
                     <div class="col span-1-of-3">
                         <input type="email" name="email" id="email" placeholder="Your email" required>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="row">
                     <div class="col span-1-of-3">
-                        <label for="url">Image *</label>
+                        <label class="required" for="url">Image *</label>
                     </div>
                     <div class="col span-1-of-3">
                         <input type="url" name="url" id="url" placeholder="Your image source" required>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="row">
                     <div class="col span-1-of-3">
-                        <p class="message">Rate this food!</p>
+                        <p class="message required">Rate this food! *</p>
                         <fieldset>
                             <input type="radio" name="foodRating" id="thebest" value="The best">
                             <label for="thebest">The Best</label>
@@ -117,7 +117,7 @@
                             <input type="radio" name="foodRating" id="medium" value="Medium">
                             <label for="medium">Medium</label>
 
-                            <input type="radio" name="foodRating" id="bad" value="Bad">
+                            <input type="radio" name="foodRating" id="bad"  value="Bad">
                             <label for="bad">Bad</label>
                         </fieldset>
                     </div>
@@ -131,7 +131,7 @@
                     </div>
                 </div>
                 <!-- Message -->
-                <p class="message">Your message*</p>
+                <p class="message required">Your message *</p>
                 <textarea name="message" placeholder="Tell us" required></textarea>
 
                 <div class="form_actions">
